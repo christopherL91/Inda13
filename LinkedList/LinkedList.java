@@ -8,7 +8,7 @@ public class LinkedList<T> {
     
     private ListElement<T> first;   // First element in list.
     private ListElement<T> last;    // Last element in list.
-    private int size;               // Number of elements in list.
+    private int size = 0;            // Number of elements in list.
     
     /**
      * A list element.
@@ -33,9 +33,25 @@ public class LinkedList<T> {
      *   <li> last.next == null. </li>
      * </ul>
      */
+    //write more tests...
     public boolean isHealthy() {
-    	
-    	return false;
+        boolean ok = false;
+        return true;
+}
+
+    //count the number of elements using iterative search!
+    private int getSize() {
+
+    if(isEmpty() == true) {
+            return 0;
+        }
+
+        int counter = 1;
+        ListElement<T> current;
+        for (current = this.first; current != null && current.next != null; current = current.next) {
+         counter++;
+        }
+    return counter;
     }
     
     /**
@@ -58,6 +74,7 @@ public class LinkedList<T> {
             this.last = firstElement;
         }
         this.first = firstElement;
+        this.size++;
     }
 
     /**
@@ -72,6 +89,7 @@ public class LinkedList<T> {
             this.first = lastElement;
         }
         this.last = lastElement;
+        this.size++;
     }
     /**
      * Returns the first element of this list.
@@ -106,9 +124,15 @@ public class LinkedList<T> {
      * Returns <code>null</code> if <code>index</code> is out of bounds.
      */
     public T get(int index) {
-        ListElement<T> current;
-        current = this.first;
-        return null;
+        if (index < 0 || index >= size()) {
+            return null;
+        }
+
+        ListElement<T> current = this.first;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+        return current.data;
     }
 
     /**
@@ -116,13 +140,17 @@ public class LinkedList<T> {
      * Returns <code>null</code> if the list is empty.
      */ //bugs fix
     public T removeFirst() {
-        ListElement<T> first;
-        first = this.first;
+        ListElement<T> f = this.first;
 
-        if (first != null) {
-            ListElement<T> next = first.next;
-            first = null;
-            return next.data;
+        if (this.size == 1) {
+            this.last = null;
+        }
+
+        if (f != null) {
+            ListElement<T> n = f.next;
+            this.first = n;
+            this.size--;
+            return f.data;
         }
         return null;
     }
@@ -131,23 +159,16 @@ public class LinkedList<T> {
      * Removes all of the elements from this list.
      */
     public void clear() {
-        first = null;
-        last = null;
+        this.first = null;
+        this.last = null;
+        this.size = 0;
     }
 
     /**
      * Returns the number of elements in this list.
      */
     public int size() {
-        int counter = 0;
-        ListElement<T> current;
-        for (current = this.first; current != null && current.next != null; current = current.next) {
-         counter++;
-        }
-
-    //compensate for the first element
-    this.size = counter + 1;
-    return this.size;
+        return this.size;
     }
 
     /**
@@ -173,11 +194,11 @@ public class LinkedList<T> {
         ListElement<T> current;
         String res = "[";
         if (this.first == null) {
-            return null;
+            return "[]";
         }
         //inspiration from c++
         for (current = this.first; current.next != null; current = current.next) {
-            res += current.data + ", ";
+            res += current.data.toString() + ", ";
         }
         //add last element
         res += last.data + "]";
