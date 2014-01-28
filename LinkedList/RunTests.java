@@ -23,6 +23,7 @@ public class RunTests {
 		list.addFirst("Lisa");
 		list.addLast("John");
 		assertEquals(3,list.size());
+		assertEquals(true,list.isHealthy());
 		tearDown();
 	}
 
@@ -31,6 +32,7 @@ public class RunTests {
 		list.addFirst("Lisa");
 		list.addFirst("John");
 		assertEquals("Lisa",list.getLast());
+		assertEquals(true,list.isHealthy());
 		tearDown();
 	}
 
@@ -40,6 +42,7 @@ public class RunTests {
 		list.addFirst("Kalle");
 		list.addLast("John");
 		assertEquals("[Kalle, lisa, John]",list.toString());
+		assertEquals(true,list.isHealthy());
 		tearDown();
 	}
 
@@ -49,6 +52,7 @@ public class RunTests {
 		list.addFirst("John");
 		list.removeFirst();
 		assertEquals("[Kalle]",list.toString());
+		assertEquals(true,list.isHealthy());
 		tearDown();
 	}
 
@@ -59,6 +63,7 @@ public class RunTests {
 		assertEquals(null,list.get(2));
 		assertEquals(null,list.get(-2));
 		assertEquals("Anna",list.get(0));
+		assertEquals(true,list.isHealthy());
 		tearDown();
 	}
 
@@ -66,6 +71,7 @@ public class RunTests {
 	public void testEmpty() {
 		list.clear();
 		assertEquals(true,list.isEmpty());
+		assertEquals(true,list.isHealthy());
 		tearDown();
 	}
 
@@ -73,6 +79,7 @@ public class RunTests {
 	public void clearList() {
 		list.clear();
 		assertEquals(0,list.size());
+		assertEquals(true,list.isHealthy());
 		tearDown();
 	}
 

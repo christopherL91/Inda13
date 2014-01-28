@@ -35,8 +35,21 @@ public class LinkedList<T> {
      */
     //write more tests...
     public boolean isHealthy() {
-        boolean ok = false;
-        return true;
+    boolean ok = true;
+    
+    ok = (getSize() == this.size);
+    if (this.size == 0) {
+        ok = ok && (this.first == null && this.last == null);
+    }
+    else if(this.size > 0) {
+        ok = ok && (this.first != null && this.last != null);
+        ok = ok && (last.next == null);
+    }
+    else if(this.size == 1) {
+        ok = ok && (this.first == this.last);
+        ok = ok && (last.next == null);
+    }
+    return ok;
 }
 
     //count the number of elements using iterative search!
