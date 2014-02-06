@@ -2,7 +2,7 @@
  * A singly linked list.
  * 
  * @author Christopher Lillthors
- * @version 1.0
+ * @version 2.0
  */
 public class LinkedList<T> { 
     
@@ -151,7 +151,7 @@ public class LinkedList<T> {
     /**
      * Removes and returns the first element from this list.
      * Returns <code>null</code> if the list is empty.
-     */ //bugs fix
+     */
     public T removeFirst() {
         ListElement<T> f = this.first;
 
