@@ -53,8 +53,15 @@ public class StringHash implements StringDictionary {
      */
     @Override
     public boolean add(String s) {
-        // TODO
-        return false;
+        int hash = s.hashCode();
+        int index = Math.abs(hash) % table.length;
+
+        if (contains(s) == true) {
+            return false;
+        } else {
+            table[index].add(s);
+            return true;
+        }
     }
 
     /**
@@ -66,8 +73,15 @@ public class StringHash implements StringDictionary {
      */
     @Override
     public boolean remove(String s) {
-        // TODO
-        return false;
+        int hash = s.hashCode();
+        int index = Math.abs(hash) % table.length;
+
+        if (contains(s) == true) {
+            table[index].remove(s);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -78,7 +92,13 @@ public class StringHash implements StringDictionary {
      */
     @Override
     public boolean contains(String s) {
-        // TODO
-        return false;
+        int hash = s.hashCode();
+        int index = Math.abs(hash) % table.length;
+
+        if (table[index].contains(s)) {
+            return true;
+        } else{
+            return false;
+        }
     }
 }
