@@ -53,15 +53,23 @@ public class StringHash implements StringDictionary {
      */
     @Override
     public boolean add(String s) {
-        int hash = s.hashCode();
-        int index = Math.abs(hash) % table.length;
+        try {
+                int hash = s.hashCode();
+                int index = Math.abs(hash) % table.length;
+                if(table[index] == null) {
+                    table[index] = new LinkedList<>();
+                }
 
-        if (contains(s) == true) {
-            return false;
-        } else {
-            table[index].add(s);
-            return true;
-        }
+                if (contains(s) == true) {
+                    return false;
+                } else {
+                    table[index].add(s);
+                    return true;
+                }
+            }catch(NullPointerException e) {
+                String tmp = "null";
+                return add(tmp);
+            }
     }
 
     /**
@@ -73,15 +81,20 @@ public class StringHash implements StringDictionary {
      */
     @Override
     public boolean remove(String s) {
-        int hash = s.hashCode();
-        int index = Math.abs(hash) % table.length;
+        try {
+                int hash = s.hashCode();
+                int index = Math.abs(hash) % table.length;
 
-        if (contains(s) == true) {
-            table[index].remove(s);
-            return true;
-        } else {
-            return false;
-        }
+                if (contains(s) == true) {
+                    table[index].remove(s);
+                    return true;
+                } else {
+                    return false;
+                }
+            }catch(NullPointerException e) {
+                String tmp = "null";
+                return remove(tmp);
+            }
     }
 
     /**
@@ -92,13 +105,22 @@ public class StringHash implements StringDictionary {
      */
     @Override
     public boolean contains(String s) {
-        int hash = s.hashCode();
-        int index = Math.abs(hash) % table.length;
+        try {
+            int hash = s.hashCode();
+            int index = Math.abs(hash) % table.length;
 
-        if (table[index].contains(s)) {
-            return true;
-        } else{
-            return false;
+                if (table[index] == null) {
+                    return false;
+                }
+
+                if (table[index].contains(s)) {
+                    return true;
+                } else{
+                    return false;
+                }
+        } catch(NullPointerException e) {
+            String tmp = "null";
+            return contains(tmp);
         }
     }
 }
