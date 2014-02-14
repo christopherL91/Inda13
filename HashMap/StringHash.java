@@ -44,10 +44,6 @@ public class StringHash implements StringDictionary {
         table = t;
     }
 
-    public void clean() {
-        this.table = null;
-    }
-
     /**
      * Adds the given string to this dictionary.
      * Returns <code>true</code> if the dictionary
