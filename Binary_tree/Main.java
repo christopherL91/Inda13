@@ -1,9 +1,9 @@
 public class Main {
 	public static void main(String[] args) {
-		BinaryTree<String> tree = new BinaryTree<>();
-		tree.add("hello");
-		tree.add("foo");
-		tree.add("1232");
-		System.out.println(tree.numberOfElements());
+		BinaryTree<Integer> tree = new BinaryTree<>();
+		tree.add(1);
+		tree.add(2);
+		tree.add(10);
+		System.out.println(tree);
 	}
 }

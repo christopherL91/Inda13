@@ -58,24 +58,23 @@ public class BinaryTree<T extends Comparable<T>> implements Set<T> {
 		//keep going until something happens.
 		while(true) {
 			parent = current;
-			if (data.compareTo(current.data) > 0) {
+			if (data.compareTo(current.data) < 0) {
 				current = current.left;
 				//if left is null
 				if (current == null) {
 					parent.left = newNode;
 					this.size +=1;
-					System.out.println("left");
 					return true;
 				}
-			}else if (data.compareTo(current.data) < 0) {
+			}else if (data.compareTo(current.data) > 0) {
 					current = current.right;
 					//if right is null
 					if (current == null) {
 						parent.right = newNode;
 						this.size +=1;
-						System.out.println("right");
 						return true;
 					}
+			//same data. Return false
 			} else if (data.compareTo(current.data) == 0) {
 					System.out.println("Same data");
 					return false;
@@ -165,13 +164,13 @@ public class BinaryTree<T extends Comparable<T>> implements Set<T> {
 			return;
 		}
 
+		if (node.left != null) {
+			stringHelper(node.left,string);
+			string.append(",");
+		}
+
 		//append data to string
 		string.append(node.data);
-
-		if (node.left != null) {
-			string.append(",");
-			stringHelper(node.left,string);
-		}
 
 		if (node.right != null) {
 			string.append(",");
