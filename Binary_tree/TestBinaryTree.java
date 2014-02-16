@@ -52,14 +52,22 @@ public class TestBinaryTree {
 
 	@Test
 	public void testHeight() {
-		tree.add("hejsan");
-		tree.add("foo");
-		assertEquals(2,tree.getHeight());
+		BinaryTree<Integer> numberTree = new BinaryTree<>();
+		numberTree.add(2);
+		numberTree.add(3);
+		numberTree.add(1);
+		assertEquals(2,numberTree.getHeight());
+		numberTree = null;
 	}
 
-	//@Test
+	@Test
 	public void getLeafs() {
-		//TODO
+		BinaryTree<Integer> numberTree = new BinaryTree<>();
+		numberTree.add(2);
+		numberTree.add(3);
+		numberTree.add(1);
+		assertEquals(2,numberTree.getNumberOfLeafs());
+		numberTree = null;
 	}
 
 	@Test
