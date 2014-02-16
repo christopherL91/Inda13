@@ -113,12 +113,6 @@ public class BinaryTree<T extends Comparable<T>> implements Set<T> {
 		}
 	}
 
-	//remove node from tree.
-	public boolean remove(T data) {
-		//TODO
-		return true;
-	}
-
 	//returns number of elements in tree.
 	public int numberOfElements() {
 		return this.size;
@@ -137,13 +131,22 @@ public class BinaryTree<T extends Comparable<T>> implements Set<T> {
 			return 1 + Math.max(height(node.left),
 								height(node.right));
 		}
+	}
 
-
+	public int getNumberOfLeafs() {
+		int tmp = leafs(this.root);
+		return tmp;
 	}
 
 	//returns the number of leafs in tree.
-	public int numberOfLeafs() {
-		return this.leafs;
+	private int leafs(Node<T> node) {
+		if (node == null) {
+			return 0;
+		}else if( node.left == null && node.right == null){
+			return 1;
+		}else {
+			return leafs(node.left) + leafs(node.right);
+		}
 	}
 
 	//implement BFS algorithm

@@ -36,7 +36,8 @@ public class TestBinaryTree {
 	public void testSize() {
 		tree.add("foo");
 		tree.add("bar");
-		assertEquals(2,tree.numberOfElements());
+		tree.add("hejsan");
+		assertEquals(3,tree.numberOfElements());
 	}
 
 	@Rule
@@ -56,5 +57,10 @@ public class TestBinaryTree {
 		tree.add("hejsan");
 		tree.add("foo");
 		assertEquals(2,tree.getHeight());
+	}
+
+	//@Test
+	public void getLeafs() {
+		//TODO
 	}
 }
