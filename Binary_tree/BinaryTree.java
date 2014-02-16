@@ -20,7 +20,6 @@ public class BinaryTree<T extends Comparable<T>> implements Set<T> {
 	public static class Node<T extends Comparable<T>> {
 		public Node<T> left; //null
 		public Node<T> right; //null
-		public Node<T> parent; //null
 		private T data;
 		//create new node
 		public Node(T data) {
@@ -76,7 +75,6 @@ public class BinaryTree<T extends Comparable<T>> implements Set<T> {
 					}
 			//same data. Return false
 			} else if (data.compareTo(current.data) == 0) {
-					System.out.println("Same data");
 					return false;
 			}
 		}
