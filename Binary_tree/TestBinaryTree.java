@@ -43,7 +43,7 @@ public class TestBinaryTree {
 	@Rule
 	public ExpectedException expectedEx = ExpectedException.none();
 
-	//@Test /TODO
+	@Test
 	public void testContains() {
 		expectedEx.expect(NoRootException.class);
 		expectedEx.expectMessage("Root is not set");
@@ -62,5 +62,14 @@ public class TestBinaryTree {
 	//@Test
 	public void getLeafs() {
 		//TODO
+	}
+
+	@Test
+	public void testPrint() {
+		BinaryTree<Integer> numberTree = new BinaryTree<>();
+		numberTree.add(2);
+		numberTree.add(3);
+		numberTree.add(1);
+		assertEquals("[1,2,3]",numberTree.toString());
 	}
 }
