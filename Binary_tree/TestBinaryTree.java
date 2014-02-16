@@ -24,11 +24,12 @@ public class TestBinaryTree {
 		tree = null;
 	}
 
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public void addElements() {
 		assertEquals(true,tree.add("foo"));
 		assertEquals(true,tree.add("bar"));
 		assertEquals(false,tree.add("foo"));
+		tree.add(null);
 	}
 
 	@Test
@@ -36,5 +37,24 @@ public class TestBinaryTree {
 		tree.add("foo");
 		tree.add("bar");
 		assertEquals(2,tree.numberOfElements());
+	}
+
+	@Rule
+	public ExpectedException expectedEx = ExpectedException.none();
+
+	//@Test /TODO
+	public void testContains() {
+		expectedEx.expect(NoRootException.class);
+		expectedEx.expectMessage("Root is not set");
+		tree.add("foo");
+		tree.add("bar");
+		tree.contains("foobar");
+	}
+
+	@Test
+	public void testHeight() {
+		tree.add("hejsan");
+		tree.add("foo");
+		assertEquals(2,tree.getHeight());
 	}
 }

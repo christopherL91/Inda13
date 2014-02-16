@@ -6,13 +6,6 @@ public class BinaryTree<T extends Comparable<T>> implements Set<T> {
 	private int height; //0
 	private Node<T> root; //null
 
-
-	public static class NoRootException extends IllegalArgumentException{
-		public NoRootException(){
-			super("Root is not set");
-		}
-	}
-
 	//nested class, representing an node.
 
 	// **/
@@ -131,9 +124,21 @@ public class BinaryTree<T extends Comparable<T>> implements Set<T> {
 		return this.size;
 	}
 
+	public int getHeight() {
+		int tmp = height(this.root);
+		return tmp;
+	}
+
 	//returns the give height of the tree.
-	public int height() {
-		return this.height;
+	private int height(Node<T> node) {
+		if (node == null) {
+			return 0;
+		}else {
+			return 1 + Math.max(height(node.left),
+								height(node.right));
+		}
+
+
 	}
 
 	//returns the number of leafs in tree.
