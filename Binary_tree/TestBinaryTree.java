@@ -44,10 +44,17 @@ public class TestBinaryTree {
 	public ExpectedException expectedEx = ExpectedException.none();
 
 	@Test
-	public void testContains() {
+	public void testContains1() {
 		expectedEx.expect(NoRootException.class);
 		expectedEx.expectMessage("Root is not set");
 		tree.contains("foo");
+	}
+
+	@Test
+	public void testContains2() {
+		tree.add("foo");
+		tree.add("bar");
+		assertEquals(false,tree.contains("foobar"));
 	}
 
 	@Test
