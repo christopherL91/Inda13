@@ -29,7 +29,6 @@ public class BinaryTree<T extends Comparable<T>> implements Set<T> {
 		public Node(T data,Node<T> parent) {
 			this.data = data;
 			this.parent = parent;
-			//TODO
 		}
 	}
 
@@ -44,84 +43,39 @@ public class BinaryTree<T extends Comparable<T>> implements Set<T> {
 			this.size +=1;
 			this.root = newNode;
 			return true;
-		} else {
-				//it's dangerous to go alone. Take this!
-				Node<T> current = this.root;
-				//a parent for our future node.
-				Node<T> parent;
-				while(true) {
-					parent = current;
-					//true
-					if (data.compareTo(current.data) > 0) {
-						current = current.left;
+		}
+
+			Node<T> current = this.root;
+			//a parent for our future node.
+			Node<T> parent;
+			//keep going until something happens.
+			while(true) {
+				parent = current;
+				//data > curren.data
+				if (data.compareTo(current.data) > 0) {
+					current = current.left;
+					//if left is null
+					if (current == null) {
+						parent.left = newNode;
+						//we're ok.
+						this.size +=1;
+						return true;
+					}
+					//data < current.data
+					}else if (data.compareTo(current.data) < 0) {
+						current = current.right;
+						//if right is null
 						if (current == null) {
-							parent.left = newNode;
-							//we're ok.
-							return;
+							parent.right = newNode;
+							this.size +=1;
+							return true;
 						}
+					//data = current.data
+					} else {
+						return false;
 					}
 				}
 			}
-		}
-
-	// public boolean add(T data) {
-	// 	if(addElement(data,this.root)) {
-	// 		return true;
-	// 	}else {
-	// 		return false;
-	// 	}
-	// }
-
-	private boolean addElement(T data,Node<T> node) {
-		//no root node. Tree will be created.
-		if (node == null) {
-			//create new node!
-			node = new Node<T>(data);
-			this.size +=1;
-			this.leafs +=1;
-			//everything is ok!
-			//node.parent = null;
-			return true;
-		}
-
-		//this should not happen
-		if (data.compareTo(node.data) == 0) {
-			System.out.println("same data");
-			return false;
-		}
-
-		//if data.compareTo is true
-		if (data.compareTo(node.data) > 0) {
-			addToLeft(node,data);
-			return true;
-		}
-
-		//if data.compareTo is false
-		if (data.compareTo(node.data) < 0) {
-			addToRight(node,data);
-			return true;
-		}
-		//if everything else fails.
-		return false;
-	}
-
-	//add node right to parent.
-	private void addToRight(Node<T> node,T data) {
-		//it's empty on the right side, create new node.
-		if (node.right == null) {
-		this.size +=1;
-		node.right = new Node<T>(data, node);
-		}
-	}
-
-	//add node left to parent.
-	private void addToLeft(Node<T> node,T data) {
-		//it's empty on the left side, create new node.
-		if (node.left == null) {
-		this.size +=1;
-		node.left = new Node<T>(data,node);
-		}
-	}
 
 	//remove node from tree.
 	public boolean remove(T data) {
