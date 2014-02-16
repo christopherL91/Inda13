@@ -54,17 +54,17 @@ public class BinaryTree<T extends Comparable<T>> implements Set<T> {
 		}
 		Node<T> current = this.root;
 		//a parent for our future node.
-		Node<T> parent; //null
+		Node<T> parent;
 		//keep going until something happens.
 		while(true) {
 			parent = current;
-			//data > curren.data
 			if (data.compareTo(current.data) > 0) {
 				current = current.left;
 				//if left is null
 				if (current == null) {
 					parent.left = newNode;
 					this.size +=1;
+					System.out.println("left");
 					return true;
 				}
 			}else if (data.compareTo(current.data) < 0) {
@@ -73,9 +73,11 @@ public class BinaryTree<T extends Comparable<T>> implements Set<T> {
 					if (current == null) {
 						parent.right = newNode;
 						this.size +=1;
+						System.out.println("right");
 						return true;
 					}
-			} else {
+			} else if (data.compareTo(current.data) == 0) {
+					System.out.println("Same data");
 					return false;
 			}
 		}
@@ -149,9 +151,32 @@ public class BinaryTree<T extends Comparable<T>> implements Set<T> {
 		}
 	}
 
-	//implement BFS algorithm
 	public String toString() {
-		return "";
+		StringBuilder string = new StringBuilder("[");
+		stringHelper(this.root,string);
+		string.append("]");
+		return string.toString();
+	}
+
+	//time complexity is O(n) since the algorithm visits every node just once
+	private void stringHelper(Node<T> node, StringBuilder string) {
+		//empty tree
+		if (node == null) {
+			return;
+		}
+
+		//append data to string
+		string.append(node.data);
+
+		if (node.left != null) {
+			string.append(",");
+			stringHelper(node.left,string);
+		}
+
+		if (node.right != null) {
+			string.append(",");
+			stringHelper(node.right,string);
+		}
 	}
 }
 
