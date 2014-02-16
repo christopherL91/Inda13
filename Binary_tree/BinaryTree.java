@@ -6,6 +6,13 @@ public class BinaryTree<T extends Comparable<T>> implements Set<T> {
 	private int height; //0
 	private Node<T> root; //null
 
+
+	public static class NoRootException extends IllegalArgumentException{
+		public NoRootException(){
+			super("Root is not set");
+		}
+	}
+
 	//nested class, representing an node.
 
 	// **/
@@ -34,7 +41,17 @@ public class BinaryTree<T extends Comparable<T>> implements Set<T> {
 
 	//TODO fix current.parent bug!
 
+	/**
+	* @return true if insertion was succeded.
+	* @param data is the element which you want to insert.
+	*/
+
 	public boolean add(T data) {
+		//null is not accepted
+		if (data == null) {
+			throw new IllegalArgumentException();
+		}
+
 		Node<T> newNode = new Node<T>(data);
 		//tree is empty, create a root.
 		if (this.root == null) {
@@ -67,6 +84,38 @@ public class BinaryTree<T extends Comparable<T>> implements Set<T> {
 					}
 			} else {
 					return false;
+			}
+		}
+	}
+
+	public boolean contains(T data) {
+		//null is not accepted
+		if (data == null) {
+			throw new IllegalArgumentException();
+		}
+
+		if (this.root == null) {
+			throw new NoRootException();
+		}
+		//set current node
+		Node<T> current = this.root;
+		while(true) {
+			//match!
+			if (data.compareTo(current.data) == 0) {
+				return true;
+			}
+
+			if (data.compareTo(current.data) > 0) {
+				current = current.left;
+				if (current == null) {	
+					return false;
+				}
+			}
+			if (data.compareTo(current.data) < 0) {
+				current = current.right;
+				if (current == null) {
+					return false;
+				}
 			}
 		}
 	}
