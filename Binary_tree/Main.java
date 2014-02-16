@@ -3,6 +3,7 @@ public class Main {
 		BinaryTree<String> tree = new BinaryTree<>();
 		tree.add("hello");
 		tree.add("foo");
-		tree.print();
+		tree.add("1232");
+		System.out.println(tree.numberOfElements());
 	}
 }

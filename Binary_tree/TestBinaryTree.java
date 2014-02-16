@@ -28,6 +28,13 @@ public class TestBinaryTree {
 	public void addElements() {
 		assertEquals(true,tree.add("foo"));
 		assertEquals(true,tree.add("bar"));
-		//assertEquals(false,tree.add("foo"));
+		assertEquals(false,tree.add("foo"));
+	}
+
+	@Test
+	public void testSize() {
+		tree.add("foo");
+		tree.add("bar");
+		assertEquals(2,tree.numberOfElements());
 	}
 }

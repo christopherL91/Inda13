@@ -1,4 +1,4 @@
 #!/bin/bash
 
-javac -cp .:../LinkedList/junit-4.11.jar:../LinkedList/hamcrest-core-1.3.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/jre/lib/jfxrt.jar *.java -Xlint:unchecked
-java -cp .:../LinkedList/junit-4.11.jar:../LinkedList/hamcrest-core-1.3.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/jre/lib/jfxrt.jar org.junit.runner.JUnitCore TestBinaryTree
+javac -cp .:/afs/nada.kth.se/home/n/u1qfoj5n/Private/Programmering/Java/Junit/junit-4.11.jar:/afs/nada.kth.se/home/n/u1qfoj5n/Private/Programmering/Java/Junit/hamcrest-core-1.3.jar *java
+java -cp .:/afs/nada.kth.se/home/n/u1qfoj5n/Private/Programmering/Java/Junit/junit-4.11.jar:/afs/nada.kth.se/home/n/u1qfoj5n/Private/Programmering/Java/Junit/hamcrest-core-1.3.jar org.junit.runner.JUnitCore TestBinaryTree

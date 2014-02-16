@@ -26,15 +26,13 @@ public class BinaryTree<T extends Comparable<T>> implements Set<T> {
 		public Node(T data) {
 			this.data = data;
 		}
-		public Node(T data,Node<T> parent) {
-			this.data = data;
-			this.parent = parent;
-		}
 	}
 
 	public BinaryTree() {
 		//do nothing
 	}
+
+	//TODO fix current.parent bug!
 
 	public boolean add(T data) {
 		Node<T> newNode = new Node<T>(data);
@@ -44,38 +42,34 @@ public class BinaryTree<T extends Comparable<T>> implements Set<T> {
 			this.root = newNode;
 			return true;
 		}
-
-			Node<T> current = this.root;
-			//a parent for our future node.
-			Node<T> parent;
-			//keep going until something happens.
-			while(true) {
-				parent = current;
-				//data > curren.data
-				if (data.compareTo(current.data) > 0) {
-					current = current.left;
-					//if left is null
+		Node<T> current = this.root;
+		//a parent for our future node.
+		Node<T> parent; //null
+		//keep going until something happens.
+		while(true) {
+			parent = current;
+			//data > curren.data
+			if (data.compareTo(current.data) > 0) {
+				current = current.left;
+				//if left is null
+				if (current == null) {
+					parent.left = newNode;
+					this.size +=1;
+					return true;
+				}
+			}else if (data.compareTo(current.data) < 0) {
+					current = current.right;
+					//if right is null
 					if (current == null) {
-						parent.left = newNode;
-						//we're ok.
+						parent.right = newNode;
 						this.size +=1;
 						return true;
 					}
-					//data < current.data
-					}else if (data.compareTo(current.data) < 0) {
-						current = current.right;
-						//if right is null
-						if (current == null) {
-							parent.right = newNode;
-							this.size +=1;
-							return true;
-						}
-					//data = current.data
-					} else {
-						return false;
-					}
-				}
+			} else {
+					return false;
 			}
+		}
+	}
 
 	//remove node from tree.
 	public boolean remove(T data) {
