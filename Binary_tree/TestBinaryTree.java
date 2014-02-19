@@ -1,3 +1,8 @@
+/**
+* @author Christopher Lillthors
+* @version 2.0
+*/
+
 import static org.junit.Assert.assertEquals;
 import org.junit.Rule;
 import org.junit.Test;

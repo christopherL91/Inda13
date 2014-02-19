@@ -1,13 +1,18 @@
+/**
+* @author Christopher Lillthors
+* @version 2.0
+*/
+
 public class BinaryTree<T extends Comparable<T>> implements Set<T> {
 
-	//fields
+	//private fields.
 	private int size; //0
 	private int leafs; //0
 	private int height; //0
 	private Node<T> root; //null
 
+	/* -------------------------------------------*/
 	//nested class, representing an node.
-
 	// **/
 	// * in C:
 	// *	struct node {
@@ -17,27 +22,29 @@ public class BinaryTree<T extends Comparable<T>> implements Set<T> {
 	// *	}
 	// *
 	// */
+	/* ---------------------------------------------*/
+
 	public static class Node<T extends Comparable<T>> {
+		//reference to left
 		public Node<T> left; //null
+		//reference to right
 		public Node<T> right; //null
+		//holds the data
 		private T data;
 		//create new node
+		/**
+		* @param data, element in node
+		* @return Node object
+		*/
 		public Node(T data) {
 			this.data = data;
 		}
 	}
 
-	public BinaryTree() {
-		//do nothing
-	}
-
-	//TODO fix current.parent bug!
-
 	/**
 	* @return true if insertion was succeded.
 	* @param data is the element which you want to insert.
 	*/
-
 	public boolean add(T data) {
 		//null is not accepted
 		if (data == null) {
@@ -80,6 +87,11 @@ public class BinaryTree<T extends Comparable<T>> implements Set<T> {
 		}
 	}
 
+	/**
+	* @param data, data to search for in tree
+	* @return true/false depending on if the method finds the node with
+	* the right data
+	*/
 	public boolean contains(T data) {
 		//null is not accepted
 		if (data == null) {
@@ -112,11 +124,15 @@ public class BinaryTree<T extends Comparable<T>> implements Set<T> {
 		}
 	}
 
-	//returns number of elements in tree.
+	/**
+	* @return returns number of elements in tree
+	*/
 	public int numberOfElements() {
 		return this.size;
 	}
-
+	/**
+	* @return returns the height of the tree
+	*/
 	public int getHeight() {
 		int tmp = height(this.root);
 		return tmp;
@@ -132,6 +148,9 @@ public class BinaryTree<T extends Comparable<T>> implements Set<T> {
 		}
 	}
 
+	/**
+	* @return returns the number of leafs in tree
+	*/
 	public int getNumberOfLeafs() {
 		int tmp = leafs(this.root);
 		return tmp;
@@ -148,6 +167,9 @@ public class BinaryTree<T extends Comparable<T>> implements Set<T> {
 		}
 	}
 
+	/**
+	* @return returns a string consisting if all the elements in the tree.
+	*/
 	public String toString() {
 		StringBuilder string = new StringBuilder("[");
 		stringHelper(this.root,string);
