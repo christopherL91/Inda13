@@ -34,11 +34,4 @@ public class Quicksort {
 		sorting.sort(buffer,pivot,lastIndex);
 		System.out.println(buffer);
 	}
-
-	public void sort(int Array[],int pivot,int last) {
-		if (pivot < last) {
-			int q = Partition.doPartition(Array,pivot,last);
-			sort(Array,1,Array.length);
-		}
-	}
 }

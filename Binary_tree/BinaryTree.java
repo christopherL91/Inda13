@@ -111,7 +111,7 @@ public class BinaryTree<T extends Comparable<T>> implements Set<T> {
 
 			if (data.compareTo(current.data) > 0) {
 				current = current.left;
-				if (current == null) {	
+				if (current == null) {
 					return false;
 				}
 			}
