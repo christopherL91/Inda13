@@ -14,4 +14,3 @@ toString() -> O(n) eftersom att varje nod besöks 1 gång.
 
 #Treap:
 Tidskomplexiteten blir O(log(n)) eftersom att trädet behålls balanserat hela tiden. Vilket gör att höjden i trädet är log(n) hela tiden. Man undviker alltså de fallgropar som annars finns, då trädet kan bli en länkad lista och få tidskomplexiteten O(n) istället.
-
