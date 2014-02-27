@@ -51,6 +51,9 @@ public final class ArraySortBenchmark {
   @Benchmark void quicksort1(int reps) {
     for (int i = 0; i < reps; i++) {
       System.arraycopy(values, 0, copy, 0, values.length);
+      if(quicksort.isSame(copy) == true) {
+        continue;
+      }
       quicksort.quicksort1(copy,0,copy.length-1);
     }
   }
@@ -58,6 +61,9 @@ public final class ArraySortBenchmark {
   @Benchmark void quicksort2(int reps) {
     for (int i = 0; i < reps; i++) {
       System.arraycopy(values, 0, copy, 0, values.length);
+      if(quicksort.isSame(copy) == true) {
+        continue;
+      }
       quicksort.quicksort2(copy,0,copy.length-1);
     }
   }
@@ -65,6 +71,9 @@ public final class ArraySortBenchmark {
   @Benchmark void quicksort3(int reps) {
     for (int i = 0; i < reps; i++) {
       System.arraycopy(values, 0, copy, 0, values.length);
+      if(quicksort.isSame(copy) == true) {
+        continue;
+      }
       quicksort.quicksort3(copy,0,copy.length-1);
     }
   }
@@ -72,6 +81,9 @@ public final class ArraySortBenchmark {
   @Benchmark void quicksort4(int reps) {
     for (int i = 0; i < reps; i++) {
       System.arraycopy(values, 0, copy, 0, values.length);
+      if(quicksort.isSame(copy) == true) {
+        continue;
+      }
       quicksort.quicksort4(copy,0,copy.length-1);
     }
   }

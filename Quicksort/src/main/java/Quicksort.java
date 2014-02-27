@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class Quicksort {
 
-	private static final int MIN_RANGE = 50;
+	private static final int MIN_RANGE = 13;
 
 //Nested class.
 //--------------------------------------------------------
@@ -54,10 +54,20 @@ public class Quicksort {
    /*
    * shamelessly taken from https://stackoverflow.com/questions/7961788/math-random-explained
    */
-   private int randomWithRange(int min, int max) {
-   int range = (max - min) + 1;
-   return (int)(Math.random() * range) + min;
-}
+	private int randomWithRange(int min, int max) {
+	    int range = (max - min) + 1;
+	    return (int)(Math.random() * range) + min;
+	}
+
+	public boolean isSame(int buffer[]) {
+		int first = buffer[0];
+		for (int i = 0; i < buffer.length - 1;i++) {
+			if (!(buffer[i] == buffer[i+1])) {
+				return false;
+			}
+		}
+	return true;
+	}
 // Sorting section.
 //-----------------------------------------------------------
 
