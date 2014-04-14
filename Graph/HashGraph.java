@@ -135,33 +135,28 @@ public class HashGraph implements Graph {
 		addEdge(from,to,1);
 	}
 
-	/**
-	 * {@inheritDoc Graph}
-	 */
+
 	@Override
 	public void add(int from, int to, int c) {
 		checkRange(from,to,c);
 		addEdge(from,to,c);
 	}
 
-	/**
-	 * {@inheritDoc Graph}
-	 */
+
 	@Override
 	public void addBi(int v, int w) {
 		checkRange(v,w);
 		addEdge(v,w,1);
 		addEdge(w,v,1);
+		this.numEdges--; //fur da lulz...
 	}
 
-	/**
-	 * {@inheritDoc Graph}
-	 */
 	@Override
 	public void addBi(int v, int w, int c) {
 		checkRange(v,w,c);
 		addEdge(v,w,c);
 		addEdge(w,v,c);
+		this.numEdges--;
 	}
 
 	@Override
@@ -170,6 +165,7 @@ public class HashGraph implements Graph {
 		Map<Integer,Integer> tmp = edges[from];
 		if (!isEmpty(tmp) && tmp.containsKey(to)) {
 			tmp.remove(to);
+			this.numEdges--;
 		}
 	}
 
@@ -178,6 +174,7 @@ public class HashGraph implements Graph {
 		checkRange(v,w);
 		remove(v,w);
 		remove(w,v);
+		this.numEdges--;
 	}
 
 	/**
@@ -187,7 +184,23 @@ public class HashGraph implements Graph {
 	 */
 	@Override
 	public String toString() {
-		// TODO
-		return "";
+		StringBuilder out = new StringBuilder();
+		Map<Integer,Integer> tmp;
+		out.append("{");
+		for(int i  = 0; i < edges.length; i++) {
+			tmp = edges[i];
+			if (tmp == null) {
+				continue;
+			}
+			for(Map.Entry entry : tmp.entrySet()) {
+					if ((int)entry.getValue() == -1) {
+					out.append("(" + i + "," + entry.getKey() + ")" + ",");
+				} else{
+					out.append("(" + i + "," + entry.getKey() + "," + entry.getValue() + ")" + ",");
+				}
+			}
+		}
+		out.append("}");
+		return out.toString();
 	}
 }
