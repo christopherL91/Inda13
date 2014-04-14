@@ -1,0 +1,80 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[swedish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{verbatim} 
+\usepackage{multicol}
+\usepackage{csquotes}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{bbm}
+\usepackage{amssymb}
+\usepackage{wrapfig}
+\title{Uppgift 2 \\ inda13}
+\author{
+  {\bf Christopher Lillthors}\\
+  \textbf{911005 -- 3817} \\
+  \\ 
+  Kurskod: DD1339\\
+  %Ev gruppnummer\\
+  KTH -- VT13\\
+  lillt@kth.se\\
+} 
+
+\pagestyle{fancy}
+\setlength{\headheight}{54pt}
+%\fancyfoot[CE,RO]{\thepage}
+%\fancyfoot[C]{}
+\lhead{\textbf{Kungliga Tekniska Högskolan} \\ School of Computer science and communication \\ Civilingenjörsprogrammet Datateknik\\Christopher Lillthors}
+\rhead{\textbf{Inlämningsuppgift} \\ \date{\today} \\ \ \\}
+\setlength{\parindent}{0in}
+\setlength{\parskip}{0.1in}
+\date{\today}
+\begin{document}
+\maketitle
+
+\renewcommand{\arraystretch}{1.2}
+\newpage
+
+\section{Svar till frågor}
+\begin{itemize}
+\item \textit{9:11}
+\\
+Printer
+\\
+\item \textit{9.12}
+\\
+Den egna. Printerns metod anropas med super.getName();
+\\
+\item \textit{9.13}
+\\
+Inga felmeddelanden, men den kommer inte skriva ut något. Faktum är att den ärver den metoden av Object.
+\item \textit{9.14}
+\\
+Ja det fungerar, men den kommer skriva ut objektets magic number, vilket är en identifikation för ett objekt.
+\item \textit{9.15}
+\\
+Ja det kommer att fungera, använder man @Override så kommer den att köra på den metoden istället för den ärvda av Objekt. Detta anrop kommer att skriva ut alla studenters namn.
+\item \textit{9.16}
+\\
+Vehicle car = new Car()
+Vehicle är nu car statiska variabeltyp och Car är car dynamiska variabeltyp.
+\end{itemize}
+
+\begin{itemize}
+\item isHealthy \\
+Denna är O(1), kontrollerna är oberoende av längden på buffern.\\
+\item Size() \\
+O(1), ty den hämtar ett fält och returnerar det.\\
+\item LinkedList() \\
+O(1) sätter två fält till null.\\
+\item addFirst() addLast() getFirst() getLast() removeFirst() isEmpty() \\
+Alla dessa (är/tillhör) O(1) och det är dom eftersom att ingen av metoderna gör något som involverar speciellt många operationer. På alla här utom isEmpty lägger man om en pekare och sätter den på ett annat objekt, det är knappast att betrakta som O(n) \\
+\item toString() \\
+Denna är linjär, av den enkla anledningen att den loopar igenom n stycken element för att skriva ut n stycken element.\\
+\item get() \\
+Denna är också linjär, eftersom att den måste söka igenom alla element fram till det sökta elementet n. Om det sökta elementet har index n och vi börjar i index 0, inses det lätt att operationen är linjär.
+\end{itemize}
+\end{document}

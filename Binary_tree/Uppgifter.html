@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<h1 id="veckans-uppgifter">Veckans uppgifter:</h1>
+<p>add(T data) -&gt; Medel: O(log(n)), Värsta: O(n) vilket sker då många element samlas på en och samma sida.</p>
+<p>contains(T data) -&gt; Medel och värsta: O(n) då den besöker alla noder en gång.</p>
+<p>numberOfElements() -&gt; O(1)</p>
+<p>height(Node<T> node) -&gt; O(n)</p>
+<p>getNumberOfLeafs() -&gt; O(n)</p>
+<p>toString() -&gt; O(n) eftersom att varje nod besöks 1 gång.</p>
+<h1 id="treap">Treap:</h1>
+<p>Tidskomplexiteten blir O(log(n)) eftersom att trädet behålls balanserat hela tiden. Vilket gör att höjden i trädet är log(n) hela tiden. Man undviker alltså de fallgropar som annars finns, då trädet kan bli en länkad lista och få tidskomplexiteten O(n) istället.</p>
+</body>
+</html>
