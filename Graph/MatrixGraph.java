@@ -135,7 +135,6 @@ public class MatrixGraph implements Graph {
 	@Override
 	public int cost(int v, int w) throws IllegalArgumentException {
 		checkVertexParameters(v, w);
-
 		return Math.max(NO_COST, adj[v][w]);
 	}
 
@@ -145,7 +144,6 @@ public class MatrixGraph implements Graph {
 	@Override
 	public void add(int from, int to) throws IllegalArgumentException {
 		checkVertexParameters(from, to);
-
 		addEdge(from, to, NO_COST);
 	}
 

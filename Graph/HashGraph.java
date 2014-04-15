@@ -64,12 +64,17 @@ public class HashGraph implements Graph {
 		return this.numEdges;
 	}
 
+	f := g.size()
+	f = nil
+
 	@Override
 	public int degree(int v) throws IllegalArgumentException {
 		if (v < 0) {
 			throw new IllegalArgumentException("v is to small");
 		}
-
+		if (v >= edges.length) {
+			throw new IllegalArgumentException("v is to large");
+		}
 		Map<Integer,Integer> tmp = edges[v];
 		if (!isEmpty(tmp)) {
 			return tmp.size();
@@ -110,10 +115,24 @@ public class HashGraph implements Graph {
 
 	@Override
 	public VertexIterator neighbors(int v) {
-		final Iterator<Map.Entry<Integer,Integer>> tmp = edges[v].entrySet().iterator();
-		if (tmp == null) {
-			return null;
+
+		//check for errors.
+		final Map<Integer,Integer> map = edges[v];
+
+		if(map == null) {
+			return new VertexIterator() {
+				@Override
+				public boolean hasNext() {
+					return false;
+				}
+				@Override
+				public int next() throws NoSuchElementException {
+					throw new NoSuchElementException();
+				}
+			};
 		}
+
+		final Iterator<Map.Entry<Integer,Integer>> tmp = map.entrySet().iterator();
 
 		return new VertexIterator() {
 
@@ -180,7 +199,6 @@ public class HashGraph implements Graph {
 		checkRange(v,w,c);
 		addEdge(v,w,c);
 		addEdge(w,v,c);
-		// this.numEdges--; //fur da lulz...
 	}
 
 	@Override
@@ -224,7 +242,7 @@ public class HashGraph implements Graph {
 			}
 		}
 		if (out.length() > 2) {
-		out.setLength(out.length() - 2); // Remove trailing ", "
+		out.setLength(out.length() - 2);
 		out.append(")");
 		}
 
@@ -232,5 +250,3 @@ public class HashGraph implements Graph {
 		return out.toString();
 	}
 }
-
-// {(0,0)}
