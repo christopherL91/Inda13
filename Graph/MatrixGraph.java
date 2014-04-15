@@ -154,7 +154,6 @@ public class MatrixGraph implements Graph {
 	public void add(int from, int to, int c) throws IllegalArgumentException {
 		checkVertexParameters(from, to);
 		checkNonNegativeCost(c);
-
 		addEdge(from, to, c);
 	}
 

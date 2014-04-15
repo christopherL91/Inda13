@@ -64,9 +64,6 @@ public class HashGraph implements Graph {
 		return this.numEdges;
 	}
 
-	f := g.size()
-	f = nil
-
 	@Override
 	public int degree(int v) throws IllegalArgumentException {
 		if (v < 0) {
