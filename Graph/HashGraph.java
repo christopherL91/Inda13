@@ -66,13 +66,15 @@ public class HashGraph implements Graph {
 
 	@Override
 	public int degree(int v) throws IllegalArgumentException {
-		int d = 0;
-		for(int i = 0; i < numEdges(); i++) {
-			if (hasEdge(i,v)) {
-				d++;
-			}
+		if (v < 0) {
+			throw new IllegalArgumentException("v is to small");
 		}
-		return d;
+
+		Map<Integer,Integer> tmp = edges[v];
+		if (!isEmpty(tmp)) {
+			return tmp.size();
+		}
+		return 0;
 	}
 
 	//------------------------------------------------
@@ -94,9 +96,11 @@ public class HashGraph implements Graph {
 		}
 	}
 
-	//Checks if node exist. If it's not there, it will throw an exception.
 	private boolean isEmpty(Map<Integer,Integer> tmp) {
 		if (tmp == null) {
+			return true;
+		}
+		if(tmp.size() == 0) {
 			return true;
 		}
 		return false;
@@ -106,7 +110,28 @@ public class HashGraph implements Graph {
 
 	@Override
 	public VertexIterator neighbors(int v) {
-		return null;
+		final Iterator<Map.Entry<Integer,Integer>> tmp = edges[v].entrySet().iterator();
+		if (tmp == null) {
+			return null;
+		}
+
+		return new VertexIterator() {
+
+			@Override
+			public boolean hasNext() {
+				return tmp.hasNext();
+			}
+
+			@Override
+			public int next() throws NoSuchElementException {
+				if(tmp.hasNext()) {
+					Map.Entry<Integer,Integer> entry = tmp.next();
+					return entry.getKey();
+				} else {
+					throw new NoSuchElementException();
+				}
+			}
+		};
 	}
 
 	@Override
@@ -132,7 +157,7 @@ public class HashGraph implements Graph {
 	@Override
 	public void add(int from, int to) {
 		checkRange(from,to);
-		addEdge(from,to,1);
+		addEdge(from,to,-1);
 	}
 
 
@@ -142,13 +167,12 @@ public class HashGraph implements Graph {
 		addEdge(from,to,c);
 	}
 
-
 	@Override
 	public void addBi(int v, int w) {
 		checkRange(v,w);
-		addEdge(v,w,1);
-		addEdge(w,v,1);
-		this.numEdges--; //fur da lulz...
+		addEdge(v,w,-1);
+		addEdge(w,v,-1);
+		// this.numEdges--; //fur da lulz...
 	}
 
 	@Override
@@ -156,7 +180,7 @@ public class HashGraph implements Graph {
 		checkRange(v,w,c);
 		addEdge(v,w,c);
 		addEdge(w,v,c);
-		this.numEdges--;
+		// this.numEdges--; //fur da lulz...
 	}
 
 	@Override
@@ -174,7 +198,6 @@ public class HashGraph implements Graph {
 		checkRange(v,w);
 		remove(v,w);
 		remove(w,v);
-		this.numEdges--;
 	}
 
 	/**
@@ -200,7 +223,14 @@ public class HashGraph implements Graph {
 				}
 			}
 		}
+		if (out.length() > 2) {
+		out.setLength(out.length() - 2); // Remove trailing ", "
+		out.append(")");
+		}
+
 		out.append("}");
 		return out.toString();
 	}
 }
+
+// {(0,0)}

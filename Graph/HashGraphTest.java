@@ -15,7 +15,7 @@ public class HashGraphTest extends AbstractGraphTest {
 			new HashGraph(-1);
 			fail();
 		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 }
