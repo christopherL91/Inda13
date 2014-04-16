@@ -60,7 +60,7 @@ public class GraphAlgorithms {
 	 * @param visited
 	 *            visited[i] is true if node i has been visited
 	 */
-	private static void dfs(Graph g, int v, boolean[] visited,
+	public static void dfs(Graph g, int v, boolean[] visited,
 			VertexAction action) {
 		if (visited[v])
 			return;
