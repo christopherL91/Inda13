@@ -37,7 +37,8 @@ private static Random randomNumber = new Random(System.nanoTime());
 				}
 				long endTime = System.nanoTime();
 				long end = endTime - startTime;
-				System.out.println("Time: " + end);
+				System.out.print("Time: " + end);
+				System.out.println(" componentSize: " + maxValue + " Size: " + size);
 			}
 		}
 	}
@@ -54,7 +55,7 @@ private static Random randomNumber = new Random(System.nanoTime());
 		return graph;
 	}
 
-	public static Graph addNodes(Graph graph, int size) {
+	public static void addNodes(Graph graph, int size) {
 		for(int i = 0; i < size;) {
 			int a = randomNumber.nextInt(size);
 			int b = randomNumber.nextInt(size);
@@ -63,6 +64,5 @@ private static Random randomNumber = new Random(System.nanoTime());
 				i++;
 			}
 		}
-		return graph;
 	}
 }
