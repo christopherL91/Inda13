@@ -6,17 +6,27 @@ public class GraphMain {
 private static final int[] n = {10,100,1000,5000};
 private static final int numberOfTests = n.length;
 private static Random randomNumber = new Random(System.nanoTime());
+private static int counter = 0;
 
 	public static void main(String[] args) {
 
 		for (int i = 0; i < numberOfTests ; i++) {
 			int size = n[i];
+			String method;
 			int numberOfComponents = 0;
 			final AtomicInteger maxValue = new AtomicInteger(Integer.MIN_VALUE);
 			Graph matrix = setupMatrixGraph(size);
 			Graph hash = setupHashGraph(size);
 			Graph[] graphs = {matrix, hash};
 			for (Graph graph : graphs) {
+
+				counter++;
+				if (counter % 2 == 0) {
+					method = "graph";
+				}else {
+					method = "matrix";
+				}
+
 				final AtomicInteger componentSize = new AtomicInteger();
 				long startTime = System.nanoTime();
 				boolean[] visited = new boolean[size];
@@ -38,7 +48,7 @@ private static Random randomNumber = new Random(System.nanoTime());
 				long endTime = System.nanoTime();
 				long end = endTime - startTime;
 				System.out.print("Time: " + end);
-				System.out.println(" componentSize: " + maxValue + " Size: " + size);
+				System.out.println(" maximum component size: " + maxValue + " Size: " + size + " " + method);
 			}
 		}
 	}
