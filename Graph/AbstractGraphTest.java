@@ -55,7 +55,7 @@ public abstract class AbstractGraphTest extends TestCase {
 		String g5s2 = "{(2,3,1), (1,0)}";
 		assertTrue(g0.toString().equals(g0s));
 		assertTrue(g1.toString().equals(g1s));
-		//FUCK YOU!
+		//Weird...
 		// assertTrue(g5.toString().equals(g5s1) || g5.toString().equals(g5s2));
 	}
 
